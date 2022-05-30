@@ -1,11 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {setSortCategoryBy} from "../redux/reduser/filters";
 
-export const SortPopup = ({listSort}) => {
+export const SortPopup = (props) => {
+    const sortBy = useSelector(state=>state.filters.sortBy )
+    const dispatch= useDispatch()
+
 
     const [visiblePopup, setVisiblePopup] = useState(false)
-    const [sortCategory, setSortCategory] = useState(0)
     const sortRef=useRef()
-    const activeNamesort=listSort[sortCategory]
+
 
     function bodyClicked(e){
         if(!e.path.includes(sortRef.current)){
@@ -22,7 +26,7 @@ export const SortPopup = ({listSort}) => {
     },[])
 
     function onClickHandlerSort(item) {
-        setSortCategory(item)
+        dispatch(setSortCategoryBy(item))
         setVisiblePopup(false)
     }
 
@@ -48,16 +52,17 @@ export const SortPopup = ({listSort}) => {
                 </svg>
                 <b>Сортировка по:</b>
                 <span onClick={toggleVisiblePopup}>
-                    {activeNamesort}
+                    {sortBy}
                 </span>
             </div>
             {visiblePopup && <div className="sort__popup">
                 <ul>
-                    {listSort &&
-                        listSort.map((item, index) => {
+                    {
+                        props.listSort.map((item, index) => {
                             return <li key={index}
-                                       className={sortCategory === index ? "active" : ''}
-                                       onClick={() => onClickHandlerSort(index)}>
+                                       className={sortBy === item ? "active" : ''}
+                                       onClick={() => onClickHandlerSort(item)}
+                            >
                                 {item}
                             </li>
                         })
