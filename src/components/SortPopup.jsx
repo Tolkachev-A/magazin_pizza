@@ -1,10 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
 import {setSortCategoryBy} from "../redux/reduser/filters";
 
-export const SortPopup = (props) => {
-    const sortBy = useSelector(state=>state.filters.sortBy )
-    const dispatch= useDispatch()
+export const SortPopup = React.memo(({dispatch,sortBy,listSort}) => {
+
+    console.log('render sort')
 
 
     const [visiblePopup, setVisiblePopup] = useState(false)
@@ -58,7 +57,7 @@ export const SortPopup = (props) => {
             {visiblePopup && <div className="sort__popup">
                 <ul>
                     {
-                        props.listSort.map((item, index) => {
+                       listSort.map((item, index) => {
                             return <li key={index}
                                        className={sortBy === item ? "active" : ''}
                                        onClick={() => onClickHandlerSort(item)}
@@ -71,5 +70,5 @@ export const SortPopup = (props) => {
             </div>}
         </div>
     );
-};
+});
 

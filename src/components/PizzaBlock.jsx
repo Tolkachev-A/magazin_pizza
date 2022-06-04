@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {MyLoader} from "./Loading";
 
 export const PizzaBlock = (props) => {
 
@@ -16,6 +17,8 @@ export const PizzaBlock = (props) => {
     function setNewSizesPizza(newSizes) {
         setActiveSizesPizza(newSizes)
     }
+
+
 
     return (<div className="pizza-block">
         <img

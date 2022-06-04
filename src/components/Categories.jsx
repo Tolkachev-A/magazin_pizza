@@ -1,13 +1,8 @@
 import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
 import {setCategory} from "../redux/reduser/filters";
 
 
-export const Categories = ({items}) => {
-    const sortBy = useSelector(state=>state.filters.categories )
-    const dispatch= useDispatch()
-
-
+export const Categories =  React.memo(({items,categories,dispatch}) => {
 
 
     function onClickItemActiveHandler(index) {
@@ -17,14 +12,14 @@ export const Categories = ({items}) => {
     return (
         <div className="categories">
             <ul>
-                <li className={sortBy === null ? 'active':''}
-                onClick={()=>onClickItemActiveHandler(null)}>
+                <li className={categories === null ? 'active':''}
+                    onClick={()=>onClickItemActiveHandler(null)}>
                     Все</li>
                 {items &&
                     items.map((item, index) => {
                         return <li key={index}
-                                   className={sortBy === index ? "active" : ''}
-                        onClick={()=>onClickItemActiveHandler(index)}>
+                                   className={categories === index ? "active" : ''}
+                                   onClick={()=>onClickItemActiveHandler(index)}>
                             {item}
                         </li>
                     })
@@ -32,5 +27,5 @@ export const Categories = ({items}) => {
             </ul>
         </div>
     );
-};
+})
 
