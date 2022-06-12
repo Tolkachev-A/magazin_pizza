@@ -8,7 +8,7 @@ const SORT_BY= 'SORT_BY'
 const IS_LOADING= 'IS_LOADING'
 const CATEGORIES= 'CATEGORIES'
 
-export const filterReduser = (state = initialState, action) => {
+export const filters = (state = initialState, action) => {
    switch (action.type){
        case SORT_BY:{
            return {...state, sortBy: action.sortBy}

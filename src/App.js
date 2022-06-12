@@ -3,7 +3,7 @@ import {Header} from "./components/Header";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Hom from "./pages/Hom";
-import Basket from "./pages/Basket";
+import Cart from "./pages/Cart";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
                     <div className="content">
                         <Routes>
                             <Route path={'/'} element={<Hom/>}/>
-                            <Route path={'basket'} element={<Basket/>}/>
+                            <Route path={'cart'} element={<Cart/>}/>
                         </Routes>
                     </div>
                 </div>

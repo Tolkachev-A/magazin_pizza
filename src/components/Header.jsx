@@ -2,8 +2,15 @@ import React from 'react';
 import logoSvg from "../assets/img/pizza-logo.svg";
 import {Button} from "./Button";
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
 
-export const Header = () => {
+export const Header = React.memo(() => {
+    const {totalCount, totalPrice} = useSelector(({cart}) => ({
+        totalCount: cart.totalCount,
+        totalPrice: cart.totalPrice
+    }))
+    console.log('render Header')
+
     return (
         <div className="header">
             <div className="container">
@@ -15,7 +22,7 @@ export const Header = () => {
                     </div>
                 </NavLink>
                 <Button className={'button--cart'}>
-                    <span>520 ₽</span>
+                    <span>{totalPrice} ₽</span>
                     <div className="button__delimiter"></div>
                     <svg
                         width="18"
@@ -46,10 +53,10 @@ export const Header = () => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    <span>3</span>
+                    <span>{totalCount}</span>
                 </Button>
             </div>
         </div>
     );
-};
+})
 

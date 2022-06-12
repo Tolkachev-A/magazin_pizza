@@ -10,8 +10,9 @@ export const SortPopup = React.memo(({dispatch,sortBy,listSort}) => {
     const sortRef=useRef()
 
 
-    function bodyClicked(e){
-        if(!e.path.includes(sortRef.current)){
+    function bodyClicked(event){
+        let  path = event.path || (event.composedPath && event.composedPath())
+        if(!path.includes(sortRef.current)){
             setVisiblePopup(false)
         }
 

@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {MyLoader} from "./Loading";
+import {addItemCart, setItemCart, setTotalCount, setTotalPrice} from "../redux/reduser/cart";
 
 export const PizzaBlock = (props) => {
 
     const [activeTypesDough, setActiveTypesDough] = useState(props.types[0])
     const [activeSizesPizza, setActiveSizesPizza] = useState(props.sizes[0])
 
-    const aviableTypeDough  =['тонкое','традиционное']
-    const aviableSizeDough  =[26,30,40]
+    const aviableTypeDough = ['тонкое', 'традиционное']
+    const aviableSizeDough = [26, 30, 40]
 
 
     function setNewtypesDough(newIndex) {
@@ -19,6 +20,18 @@ export const PizzaBlock = (props) => {
     }
 
 
+    function handlerAddItemCart() {
+        props.dispatch(addItemCart({
+            id: props.id,
+            name: props.name,
+            type: aviableTypeDough[activeTypesDough],
+            size: activeSizesPizza,
+            price: props.price,
+            url: props.imageUrl,
+        }))
+        props.dispatch(setTotalCount())
+        props.dispatch(setTotalPrice())
+    }
 
     return (<div className="pizza-block">
         <img
@@ -33,7 +46,7 @@ export const PizzaBlock = (props) => {
                     const finslClassNameAviableTypeDough = !props.types.includes(index) ? "disablet" : index === activeTypesDough ? "active" : ''
                     return <li key={index}
                                className={finslClassNameAviableTypeDough}
-                               onClick={()=>setNewtypesDough(index)}
+                               onClick={() => setNewtypesDough(index)}
                     >
                         {item}
                     </li>
@@ -44,7 +57,7 @@ export const PizzaBlock = (props) => {
                     const finslClassNameAviableSizeDough = !props.sizes.includes(item) ? "disablet" : item === activeSizesPizza ? "active" : ''
                     return <li key={index}
                                className={finslClassNameAviableSizeDough}
-                               onClick={()=>setNewSizesPizza(item)}
+                               onClick={() => setNewSizesPizza(item)}
                     >
                         {item} см.
                     </li>
@@ -52,7 +65,7 @@ export const PizzaBlock = (props) => {
 
             </ul>
         </div>
-        <div className="pizza-block__bottom">
+        <div className="pizza-block__bottom" onClick={handlerAddItemCart}>
             <div className="pizza-block__price">от {props.price} ₽</div>
             <div className="button button--outline button--add">
                 <svg

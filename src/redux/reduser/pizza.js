@@ -8,7 +8,7 @@ const initialState = {
 
 const SET_PIZZA = 'SET_PIZZA'
 
-export const pizzasReduser = (state = initialState, action) => {
+export const pizzas = (state = initialState, action) => {
     switch (action.type) {
         case SET_PIZZA: {
             return {...state, pizzas: action.pizzas}
