@@ -15,15 +15,16 @@ let sort = {
     ['алфавиту']: 'name',
 }
 
-const Hom = () => {
+export const Hom = () => {
     const dispatch = useDispatch()
 
-    const {pizza, categories, sortBy, isLoading, itemAddedPizzas} = useSelector(state => ({
+    const {pizza, categories, sortBy, isLoading, itemAddedPizzas, totalCount} = useSelector(state => ({
         pizza: state.pizzas.pizzas,
         categories: state.filters.categories,
         sortBy: state.filters.sortBy,
         isLoading: state.filters.isLoading,
-        itemAddedPizzas: state.cart.item
+        itemAddedPizzas: state.cart.item,
+        totalCount: state.cart.totalCount
     }))
 
     useEffect(() => {
@@ -37,6 +38,8 @@ const Hom = () => {
                            {...item}
                            dispatch={dispatch}
                            totalCountPizza={itemAddedPizzas[item.id] && itemAddedPizzas[item.id].totalCountPizza}
+                           itemAddedPizzas={itemAddedPizzas}
+                           totalCount={totalCount}
         />
     })
 
@@ -61,4 +64,3 @@ const Hom = () => {
     );
 };
 
-export default Hom;

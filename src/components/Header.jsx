@@ -21,9 +21,9 @@ export const Header = React.memo(() => {
                         <p>самая вкусная пицца во вселенной</p>
                     </div>
                 </NavLink>
-                <NavLink to={'cart'}>
+                <NavLink to={'/cart'}>
                     <Button className={'button--cart'}>
-                        <span>{totalPrice} ₽</span>
+                        <span>{totalPrice} грн</span>
                         <div className="button__delimiter"></div>
                         <svg
                             width="18"

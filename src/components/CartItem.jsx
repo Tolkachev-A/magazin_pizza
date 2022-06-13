@@ -16,7 +16,7 @@ export const CartItem = (props) => {
     }
 
     function handlerOnClickMinus() {
-        if (props.totalCountPizza >= 1) {
+        if (props.totalCountPizza >= 2) {
             props.dispatch(chengTotalPizzasClickMinus(props.id))
             props.dispatch(setTotalCountAndPrice())
         }
@@ -85,7 +85,7 @@ export const CartItem = (props) => {
                 </div>
             </div>
             <div className="cart__item-price">
-                <b>{props.totalPricePizza} ₽</b>
+                <b>{props.totalPricePizza} грн</b>
             </div>
             <div onClick={handlerInClickRemove}
                  className="cart__item-remove">

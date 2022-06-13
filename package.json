@@ -2,7 +2,7 @@
   "name": "magaz_pizza",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Antont25.github.io/magazin_pizza",
+  "homepage": "https://antont25.github.io/magazin_pizza",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -21,7 +21,6 @@
     "server": "^1.0.37",
     "web-vitals": "^2.1.0"
   },
-  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

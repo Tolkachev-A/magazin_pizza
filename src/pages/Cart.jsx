@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {Button} from "../components/Button";
 import {CartItem} from "../components/CartItem";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteAllPizzas, setTotalCountAndPrice} from "../redux/reduser/cart";
 import cartEmptyImage from '../assets/img/empty-cart.png'
 
-const Cart = () => {
+export const Cart = () => {
 
 
     const {item, totalCount, totalPrice} = useSelector(({cart}) => ({
@@ -22,6 +22,7 @@ const Cart = () => {
         dispatch(deleteAllPizzas())
         dispatch(setTotalCountAndPrice())
     }
+
 
     return (
         <div className="container container--cart">
@@ -122,11 +123,11 @@ const Cart = () => {
                 Всего пицц: <b>{totalCount} шт.</b>
               </span>
                                 <span>
-                Сумма заказа: <b>{totalPrice} ₽</b>
+                Сумма заказа: <b>{totalPrice} грн</b>
               </span>
                             </div>
                             <div className="cart__bottom-buttons">
-                                <a href="/" className="button button--outline button--add go-back-btn">
+                                <NavLink to={"/"} className="button button--outline button--add go-back-btn">
                                     <svg
                                         width="8"
                                         height="14"
@@ -141,13 +142,13 @@ const Cart = () => {
                                             strokeLinejoin="round"
                                         />
                                     </svg>
-                                    <Link to="/">
-                                        <span>Вернуться назад</span>
-                                    </Link>
-                                </a>
-                                <Button className="pay-btn">
-                                    <span>Оплатить сейчас</span>
-                                </Button>
+                                    <span>Вернуться назад</span>
+                                </NavLink>
+                                <NavLink to={'/payment'} onClick={handlerOnClickClear}>
+                                    <Button className="pay-btn">
+                                        <span>Оплатить сейчас</span>
+                                    </Button>
+                                </NavLink>
                             </div>
                         </div>
                     </div>
@@ -172,4 +173,3 @@ const Cart = () => {
     );
 };
 
-export default Cart;

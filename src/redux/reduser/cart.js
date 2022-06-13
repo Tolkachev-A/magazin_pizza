@@ -17,15 +17,30 @@ const DELETE_ALL_PIZZAS = 'DELETE_ALL_PIZZAS';
 export const cart = (state = initialState, action) => {
     switch (action.type) {
         case ADD_ITEM_CART:
-            const pizza = state.item[action.payload.id]
+            let pizzaId;
+            if (state.item[action.payload.id] === undefined) {
+                pizzaId = action.payload.id
+            } else {
+                let idBoolean = Object.keys(state.item).some(id => state.item[id].type === action.payload.type && state.item[id].size === action.payload.size)
+                if (idBoolean) {
+                    pizzaId = Object.keys(state.item).filter(id => {
+                        if (state.item[id].type === action.payload.type && state.item[id].size === action.payload.size) return state.item[id]
+                    })
+
+                } else {
+                    pizzaId = new Date().getTime()
+                }
+            }
+            const pizza = state.item[pizzaId]
             const countPizza = pizza ? pizza.totalCountPizza + 1 : 1
             const pricePizza = pizza ? pizza.totalPricePizza + pizza.price : action.payload.price
             return {
                 ...state,
                 item: {
                     ...state.item,
-                    [action.payload.id]: {
+                    [pizzaId]: {
                         ...action.payload,
+                        id: pizzaId,
                         totalCountPizza: countPizza,
                         totalPricePizza: pricePizza,
                     }
