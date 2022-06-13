@@ -16,14 +16,14 @@ let sort = {
 }
 
 const Hom = () => {
-
     const dispatch = useDispatch()
 
-    const {pizza, categories, sortBy, isLoading} = useSelector(state => ({
+    const {pizza, categories, sortBy, isLoading, itemAddedPizzas} = useSelector(state => ({
         pizza: state.pizzas.pizzas,
         categories: state.filters.categories,
         sortBy: state.filters.sortBy,
-        isLoading: state.filters.isLoading
+        isLoading: state.filters.isLoading,
+        itemAddedPizzas: state.cart.item
     }))
 
     useEffect(() => {
@@ -32,7 +32,13 @@ const Hom = () => {
     }, [categories, sortBy])
 
 
-    const itemsPizzas = pizza.map(item => <PizzaBlock key={item.id} {...item} dispatch={dispatch}/>)
+    const itemsPizzas = pizza.map(item => {
+        return <PizzaBlock key={item.id}
+                           {...item}
+                           dispatch={dispatch}
+                           totalCountPizza={itemAddedPizzas[item.id] && itemAddedPizzas[item.id].totalCountPizza}
+        />
+    })
 
 
     return (

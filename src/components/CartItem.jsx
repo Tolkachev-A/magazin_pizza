@@ -1,12 +1,31 @@
 import React from 'react';
 import {Button} from './Button';
-import {chengTotalPriceAndCount} from "../redux/reduser/cart";
+import {
+    chengTotalPizzasClickMinus,
+    chengTotalPizzasClickPlus,
+    removePizza,
+    setTotalCountAndPrice
+} from "../redux/reduser/cart";
 
 export const CartItem = (props) => {
 
 
-    function handlerOnClikPlus() {
-        props.dispatch(chengTotalPriceAndCount({id: props.id, sign: '+'}))
+    function handlerOnClickPlus() {
+        props.dispatch(chengTotalPizzasClickPlus(props.id))
+        props.dispatch(setTotalCountAndPrice())
+    }
+
+    function handlerOnClickMinus() {
+        if (props.totalCountPizza >= 1) {
+            props.dispatch(chengTotalPizzasClickMinus(props.id))
+            props.dispatch(setTotalCountAndPrice())
+        }
+
+    }
+
+    function handlerInClickRemove() {
+        props.dispatch(removePizza(props.id))
+        props.dispatch(setTotalCountAndPrice())
     }
 
     return (
@@ -26,7 +45,7 @@ export const CartItem = (props) => {
             </div>
             <div className="cart__item-count">
                 <div
-
+                    onClick={handlerOnClickMinus}
                     className="button button--outline button--circle cart__item-count-minus">
                     <svg
                         width="10"
@@ -46,7 +65,7 @@ export const CartItem = (props) => {
                 </div>
                 <b>{props.totalCountPizza}</b>
                 <div className="button button--outline button--circle cart__item-count-plus"
-                     onClick={handlerOnClikPlus}
+                     onClick={handlerOnClickPlus}
                 >
                     <svg
                         width="10"
@@ -68,7 +87,8 @@ export const CartItem = (props) => {
             <div className="cart__item-price">
                 <b>{props.totalPricePizza} ₽</b>
             </div>
-            <div className="cart__item-remove">
+            <div onClick={handlerInClickRemove}
+                 className="cart__item-remove">
                 <Button className="button--circle" outline>
                     <svg
                         width="10"

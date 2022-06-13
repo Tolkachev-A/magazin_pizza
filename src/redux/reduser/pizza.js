@@ -21,10 +21,10 @@ export const pizzas = (state = initialState, action) => {
 export const setPizzas = (pizzas) => ({type: SET_PIZZA, pizzas})
 
 
-export   const fetchPizzas = (categories, sort) => async dispatch => {
+export const fetchPizzas = (categories, sort) => async dispatch => {
 
     dispatch(isLoading(true))
-    let respons = await axios.get(`http://localhost:3001/pizzas?${categories !== null ?`category=${categories}`:''}&_sort=${sort}`)
+    let respons = await axios.get(`/pizzas?${categories !== null ? `category=${categories}` : ''}&_sort=${sort}`)
     dispatch(setPizzas(await respons.data))
-    await dispatch( isLoading(false))
+    await dispatch(isLoading(false))
 }

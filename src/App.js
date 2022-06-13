@@ -1,6 +1,6 @@
 import './scss/app.scss';
 import {Header} from "./components/Header";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 
 import Hom from "./pages/Hom";
 import Cart from "./pages/Cart";
@@ -8,7 +8,7 @@ import Cart from "./pages/Cart";
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className="App">
                 <div className="wrapper">
                     <Header/>
@@ -20,7 +20,7 @@ function App() {
                     </div>
                 </div>
             </div>
-        </BrowserRouter>);
+        </HashRouter>);
 }
 
 export default App;

@@ -2,6 +2,7 @@
   "name": "magaz_pizza",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Antont25.github.io/magazin_pizza",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -20,10 +21,13 @@
     "server": "^1.0.37",
     "web-vitals": "^2.1.0"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "fake-server": "npx json-server public/db.json --port=3001"
   },
@@ -44,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }

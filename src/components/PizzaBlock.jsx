@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {MyLoader} from "./Loading";
-import {addItemCart, setItemCart, setTotalCount, setTotalPrice} from "../redux/reduser/cart";
+import {addItemCart, setTotalCountAndPrice} from "../redux/reduser/cart";
 
 export const PizzaBlock = (props) => {
 
@@ -29,8 +28,7 @@ export const PizzaBlock = (props) => {
             price: props.price,
             url: props.imageUrl,
         }))
-        props.dispatch(setTotalCount())
-        props.dispatch(setTotalPrice())
+        props.dispatch(setTotalCountAndPrice())
     }
 
     return (<div className="pizza-block">
@@ -81,7 +79,7 @@ export const PizzaBlock = (props) => {
                     />
                 </svg>
                 <span>Добавить</span>
-                <i>2</i>
+                {props.totalCountPizza && <i>{props.totalCountPizza}</i>}
             </div>
         </div>
     </div>);
