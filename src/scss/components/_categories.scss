@@ -29,3 +29,17 @@
     }
   }
 }
+
+
+@media (max-width: 992px) {
+  .categories {
+    ul {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    li {
+      margin-top: 20px;
+    }
+  }
+}

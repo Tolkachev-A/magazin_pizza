@@ -12,6 +12,7 @@
 
   &__logo {
     display: flex;
+    margin-right: 20px;
 
     img {
       margin-right: 15px;
@@ -27,6 +28,21 @@
 
     p {
       color: #7b7b7b;
+    }
+  }
+}
+
+
+@media (max-width: 576px) {
+  .header {
+    .container {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &__logo {
+      margin-right: 0;
+      margin-bottom: 30px;
     }
   }
 }
