@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/magazin_pizza/static/css/main.0cd67461.css",
-    "main.js": "/magazin_pizza/static/js/main.fc9dbc66.js",
+    "main.css": "/magazin_pizza/static/css/main.2d191b19.css",
+    "main.js": "/magazin_pizza/static/js/main.614facb5.js",
     "static/js/787.25976bb9.chunk.js": "/magazin_pizza/static/js/787.25976bb9.chunk.js",
     "static/media/ProximaNova-Regular.eot": "/magazin_pizza/static/media/ProximaNova-Regular.d97f8f32c098b28c3ab0.eot",
     "static/media/ProximaNova-Regular.ttf": "/magazin_pizza/static/media/ProximaNova-Regular.b078618b41b9b6629ea0.ttf",
@@ -18,12 +18,12 @@
     "static/media/empty-cart.png": "/magazin_pizza/static/media/empty-cart.db905d1f4b063162f25b.png",
     "static/media/pizza-logo.svg": "/magazin_pizza/static/media/pizza-logo.56ac87032d8f6fdf863326acd06c0d97.svg",
     "index.html": "/magazin_pizza/index.html",
-    "main.0cd67461.css.map": "/magazin_pizza/static/css/main.0cd67461.css.map",
-    "main.fc9dbc66.js.map": "/magazin_pizza/static/js/main.fc9dbc66.js.map",
+    "main.2d191b19.css.map": "/magazin_pizza/static/css/main.2d191b19.css.map",
+    "main.614facb5.js.map": "/magazin_pizza/static/js/main.614facb5.js.map",
     "787.25976bb9.chunk.js.map": "/magazin_pizza/static/js/787.25976bb9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0cd67461.css",
-    "static/js/main.fc9dbc66.js"
+    "static/css/main.2d191b19.css",
+    "static/js/main.614facb5.js"
   ]
 }
