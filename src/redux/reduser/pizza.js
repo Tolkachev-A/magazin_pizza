@@ -8,7 +8,7 @@ const initialState = {
             "name": "Пепперони Фреш с перцем",
             "types": [0, 1],
             "sizes": [26, 30, 40],
-            "price": 803,
+            "price": {'26': 806, '30': 850, '40': 900},
             "category": 0,
             "rating": 4
         },
@@ -18,7 +18,7 @@ const initialState = {
             "name": "Сырная",
             "types": [0],
             "sizes": [26, 40],
-            "price": 245,
+            "price": {'26': 245, '40': 295},
             "category": 1,
             "rating": 6
         },
@@ -28,7 +28,7 @@ const initialState = {
             "name": "Цыпленок барбекю",
             "types": [0],
             "sizes": [26, 40],
-            "price": 295,
+            "price": {'26': 280, '40': 345},
             "category": 1,
             "rating": 4
         },
@@ -38,7 +38,7 @@ const initialState = {
             "name": "Кисло-сладкий цыпленок",
             "types": [1],
             "sizes": [26, 30, 40],
-            "price": 275,
+            "price": {'26': 275, '30': 305, '40': 322},
             "category": 2,
             "rating": 2
         },
@@ -48,7 +48,7 @@ const initialState = {
             "name": "Чизбургер-пицца",
             "types": [0, 1],
             "sizes": [26, 30, 40],
-            "price": 415,
+            "price": {'26': 415, '30': 445, '40': 480},
             "category": 3,
             "rating": 8
         },
@@ -58,7 +58,7 @@ const initialState = {
             "name": "Крэйзи пепперони",
             "types": [0],
             "sizes": [30, 40],
-            "price": 580,
+            "price": {'30': 580, '40': 650},
             "category": 2,
             "rating": 2
         },
@@ -68,7 +68,7 @@ const initialState = {
             "name": "Пепперони",
             "types": [0, 1],
             "sizes": [26, 30, 40],
-            "price": 675,
+            "price": {'26': 675, '30': 705, '40': 720},
             "category": 1,
             "rating": 9
         },
@@ -78,7 +78,7 @@ const initialState = {
             "name": "Маргарита",
             "types": [0, 1],
             "sizes": [26, 30, 40],
-            "price": 450,
+            "price": {'26': 450, '30': 480, '40': 500},
             "category": 4,
             "rating": 10
         },
@@ -88,7 +88,7 @@ const initialState = {
             "name": "Четыре сезона",
             "types": [0, 1],
             "sizes": [26, 30, 40],
-            "price": 395,
+            "price": {'26': 395, '30': 425, '40': 450},
             "category": 4,
             "rating": 10
         },
@@ -98,7 +98,7 @@ const initialState = {
             "name": "Овощи и грибы 🌱",
             "types": [0, 1],
             "sizes": [26, 30, 40],
-            "price": 285,
+            "price": {'26': 285, '30': 315, '40': 350},
             "category": 4,
             "rating": 7
         }
@@ -132,7 +132,12 @@ export const fetchPizzas = (categories, sort) => async dispatch => {
             return item.category === categories
         }))
     }
-    let respons = responsFilterPizzas.sort((a, b) => a[sort] > b[sort] ? 1 : -1)
-    dispatch(setPizzas(await respons))
-    await dispatch(isLoading(false))
+    let response
+    if (sort === "price") {
+        response = responsFilterPizzas.sort((a, b) => a[sort][40] > b[sort][40] ? 1 : -1)
+    } else {
+        response = responsFilterPizzas.sort((a, b) => a[sort] > b[sort] ? 1 : -1)
+    }
+    dispatch(setPizzas(response))
+    dispatch(isLoading(false))
 }

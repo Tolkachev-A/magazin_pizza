@@ -1,29 +1,25 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {setSortCategoryBy} from "../redux/reduser/filters";
 
-export const SortPopup = React.memo(({dispatch,sortBy,listSort}) => {
-
-    console.log('render sort')
-
-
+export const SortPopup = React.memo(({dispatch, sortBy, listSort}) => {
     const [visiblePopup, setVisiblePopup] = useState(false)
-    const sortRef=useRef()
+    const sortRef = useRef()
 
 
-    function bodyClicked(event){
-        let  path = event.path || (event.composedPath && event.composedPath())
-        if(!path.includes(sortRef.current)){
+    function bodyClicked(event) {
+        let path = event.path || (event.composedPath && event.composedPath())
+        if (!path.includes(sortRef.current)) {
             setVisiblePopup(false)
         }
 
     }
 
-    useEffect(()=>{
-        document.body.addEventListener('click',bodyClicked)
-        return ()=>{
-            document.body.removeEventListener("click",bodyClicked )
+    useEffect(() => {
+        document.body.addEventListener('click', bodyClicked)
+        return () => {
+            document.body.removeEventListener("click", bodyClicked)
         }
-    },[])
+    }, [])
 
     function onClickHandlerSort(item) {
         dispatch(setSortCategoryBy(item))
@@ -38,7 +34,7 @@ export const SortPopup = React.memo(({dispatch,sortBy,listSort}) => {
         <div ref={sortRef} className="sort">
             <div className="sort__label">
                 <svg
-                    className={visiblePopup?'rotate' :''}
+                    className={visiblePopup ? 'rotate' : ''}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"
@@ -58,7 +54,7 @@ export const SortPopup = React.memo(({dispatch,sortBy,listSort}) => {
             {visiblePopup && <div className="sort__popup">
                 <ul>
                     {
-                       listSort.map((item, index) => {
+                        listSort.map((item, index) => {
                             return <li key={index}
                                        className={sortBy === item ? "active" : ''}
                                        onClick={() => onClickHandlerSort(item)}

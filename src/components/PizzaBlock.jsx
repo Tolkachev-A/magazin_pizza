@@ -5,6 +5,7 @@ export const PizzaBlock = (props) => {
         const [activeTypesDough, setActiveTypesDough] = useState(props.types[0])
         const [activeSizesPizza, setActiveSizesPizza] = useState(props.sizes[0])
         const [count, setCount] = useState(0)
+        const [prise, setPrise] = useState(props.price.activeSizesPizza)
 
         const aviableTypeDough = ['тонкое', 'традиционное']
         const aviableSizeDough = [26, 30, 40]
@@ -24,14 +25,18 @@ export const PizzaBlock = (props) => {
             }, 0))
         }, [props.totalCount])
 
+        useEffect(() => {
+            setPrise(props.price[activeSizesPizza])
+        }, [activeSizesPizza])
 
-        function handlerAddItemCart() {
+
+        const handlerAddItemCart = () => {
             props.dispatch(addItemCart({
                 id: props.id,
                 name: props.name,
                 type: aviableTypeDough[activeTypesDough],
                 size: activeSizesPizza,
-                price: props.price,
+                price: prise,
                 url: props.imageUrl,
             }))
             props.dispatch(setTotalCountAndPrice())
@@ -70,7 +75,7 @@ export const PizzaBlock = (props) => {
                 </ul>
             </div>
             <div className="pizza-block__bottom" onClick={handlerAddItemCart}>
-                <div className="pizza-block__price">от {props.price} грн</div>
+                <div className="pizza-block__price">от {prise} грн</div>
                 <div className="button button--outline button--add">
                     <svg
                         width="12"
