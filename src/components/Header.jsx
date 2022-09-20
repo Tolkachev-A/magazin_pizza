@@ -5,11 +5,8 @@ import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 export const Header = React.memo(() => {
-    const {totalCount, totalPrice} = useSelector(({cart}) => ({
-        totalCount: cart.totalCount,
-        totalPrice: cart.totalPrice
-    }))
-    console.log('render Header')
+    const totalCount = useSelector(state => state.cart.totalCount)
+    const totalPrice = useSelector(state => state.cart.totalPrice)
 
     return (
         <div className="header">
@@ -17,14 +14,14 @@ export const Header = React.memo(() => {
                 <NavLink to={'/'} className="header__logo">
                     <img width="38" src={logoSvg} alt="PizzaBlock logo"/>
                     <div>
-                        <h1>React PizzaBlock</h1>
+                        <h1>Pizza</h1>
                         <p>самая вкусная пицца во вселенной</p>
                     </div>
                 </NavLink>
                 <NavLink to={'/cart'}>
                     <Button className={'button--cart'}>
                         <span>{totalPrice} грн</span>
-                        <div className="button__delimiter"></div>
+                        <div className="button__delimiter"/>
                         <svg
                             width="18"
                             height="18"
